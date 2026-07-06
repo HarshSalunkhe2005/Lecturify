@@ -1,0 +1,7 @@
+- Introduction to quantum mechanics by teacher (Dr.) E.K., reminder for back students to stop talking.
+    - Subatomic particles exhibit:
+        - Superposition (e.g., Schrödinger's cat metaphor)
+            - Coexistence of being dead and alive until observation/measurement ("wave function collapse")
+- Key concepts for test review:
+    - Superposition principle in quantum mechanics 
+    - Wave function collapse upon measurement

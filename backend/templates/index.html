@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecturify Desktop Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <i class="ri-brain-line logo-icon"></i>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-btn active" title="Upload Audio"><i class="ri-upload-cloud-2-line"></i></button>
+                <button class="nav-btn" title="Library"><i class="ri-folder-open-line"></i></button>
+                <button class="nav-btn" title="Settings"><i class="ri-settings-3-line"></i></button>
+            </nav>
+            <div class="profile-container">
+                <img src="https://ui-avatars.com/api/?name=Student&background=141c2f&color=fff" alt="Profile" class="avatar">
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="class-info">
+                    <h1>Lecturify Processing Hub</h1>
+                    <p class="subtitle" style="color: var(--text-secondary);">Drag & Drop classroom audio to generate extremely concise, fact-checked notes.</p>
+                </div>
+            </header>
+
+            <div class="workspace">
+                <!-- Left Panel: Upload Zone -->
+                <section class="panel upload-panel">
+                    <div class="panel-header">
+                        <h2><i class="ri-file-upload-line"></i> Audio Input</h2>
+                    </div>
+                    <div class="panel-content glass-effect center-content">
+                        <div id="dropZone" class="drop-zone">
+                            <i class="ri-sound-module-line drop-icon"></i>
+                            <h3>Drop Lecture Audio Here</h3>
+                            <p>or click to browse (.wav, .m4a, .mp3)</p>
+                            <input type="file" id="audioInput" accept="audio/*" hidden>
+                        </div>
+                        
+                        <div id="loadingState" class="loading-state hidden">
+                            <div class="spinner"></div>
+                            <h3 id="loadingText">1/2: Transcribing Audio (Whisper)...</h3>
+                            <p style="color: var(--accent-primary); margin-top: 10px;">This runs 100% locally on your machine.</p>
+                        </div>
+                        
+                        <div id="rawTranscriptArea" class="hidden" style="margin-top: 2rem; text-align: left; width: 100%;">
+                            <h4 style="color: var(--accent-secondary); margin-bottom: 10px;">Raw Transcript (Hinglish/English):</h4>
+                            <div id="transcriptText" style="padding: 15px; background: rgba(0,0,0,0.2); border-radius: 8px; font-size: 0.9rem; color: var(--text-secondary); max-height: 200px; overflow-y: auto;"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Right Panel: AI Processed Notes -->
+                <section class="panel notes-panel">
+                    <div class="panel-header">
+                        <h2><i class="ri-markdown-fill"></i> Generated Notes</h2>
+                        <span class="fact-check-badge"><i class="ri-shield-check-line"></i> Verified Local (Phi-3)</span>
+                    </div>
+                    <div class="panel-content glass-effect" id="notesContainer">
+                        <div class="placeholder-notes" id="notesPlaceholder" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: var(--text-secondary); opacity: 0.5;">
+                            <i class="ri-file-text-line" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                            <p>Upload an audio file to generate notes.</p>
+                        </div>
+                        <div id="notesContent" class="notes-document hidden">
+                            <!-- Markdown injected here -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
